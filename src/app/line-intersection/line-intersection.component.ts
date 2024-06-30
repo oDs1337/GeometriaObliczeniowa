@@ -97,6 +97,15 @@ export class LineIntersectionComponent {
   checkIntersection(): void {
     const line = { p1: this.p1, q1: this.q1, p2: this.p2, q2: this.q2 };
 
+    // Sprawdzenie, czy wszystkie punkty mają współrzędne (0, 0)
+    if (this.p1.x === 0 && this.p1.y === 0 &&
+      this.q1.x === 0 && this.q1.y === 0 &&
+      this.p2.x === 0 && this.p2.y === 0 &&
+      this.q2.x === 0 && this.q2.y === 0) {
+      this.result = 'Wszystkie punkty mają współrzędne (0, 0). To nie jest poprawne z perspektywy logiki matematycznej i geometrii, ponieważ nie tworzą rzeczywistych linii.';
+      return;
+    }
+
     const doesIntersect = this.doIntersect(line);
     if (doesIntersect) {
       const intersectionPoint = this.findIntersection(line);
