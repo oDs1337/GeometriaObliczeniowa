@@ -1,0 +1,76 @@
+<main>
+  <div class="form frame">
+    <form (ngSubmit)="checkIntersection()" #intersectionForm="ngForm">
+      <h2><span class="lineBlue">Linia 1</span></h2>
+      <span>Współrzędne punktu 1</span>
+      <div class="form__line">
+        <mat-form-field appearance="fill">
+          <mat-label>X</mat-label>
+          <input matInput placeholder="X" type="number" [(ngModel)]="p1.x" name="p1x" required #p1x="ngModel">
+          <mat-error *ngIf="p1x.invalid && (p1x.dirty || p1x.touched)">X is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Y</mat-label>
+          <input matInput placeholder="Y" type="number" [(ngModel)]="p1.y" name="p1y" required #p1y="ngModel">
+          <mat-error *ngIf="p1y.invalid && (p1y.dirty || p1y.touched)">Y is required.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <span>Współrzędne punktu 2</span>
+      <div class="form__line">
+        <mat-form-field appearance="fill">
+          <mat-label>X</mat-label>
+          <input matInput type="number" [(ngModel)]="q1.x" name="q1x" required #q1x="ngModel">
+          <mat-error *ngIf="q1x.invalid && (q1x.dirty || q1x.touched)">X is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Y</mat-label>
+          <input matInput type="number" [(ngModel)]="q1.y" name="q1y" required #q1y="ngModel">
+          <mat-error *ngIf="q1y.invalid && (q1y.dirty || q1y.touched)">Y is required.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <h2><span class="lineRed">Linia 2</span></h2>
+      <span>Współrzędne punktu 1</span>
+      <div class="form__line">
+        <mat-form-field appearance="fill">
+          <mat-label>X</mat-label>
+          <input matInput type="number" [(ngModel)]="p2.x" name="p2x" required #p2x="ngModel">
+          <mat-error *ngIf="p2x.invalid && (p2x.dirty || p2x.touched)">X is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Y</mat-label>
+          <input matInput type="number" [(ngModel)]="p2.y" name="p2y" required #p2y="ngModel">
+          <mat-error *ngIf="p2y.invalid && (p2y.dirty || p2y.touched)">Y is required.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <span>Współrzędne punktu 2</span>
+      <div class="form__line">
+        <mat-form-field appearance="fill">
+          <mat-label>X</mat-label>
+          <input matInput type="number" [(ngModel)]="q2.x" name="q2x" required #q2x="ngModel">
+          <mat-error *ngIf="q2x.invalid && (q2x.dirty || q2x.touched)">X is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Y</mat-label>
+          <input matInput type="number" [(ngModel)]="q2.y" name="q2y" required #q2y="ngModel">
+          <mat-error *ngIf="q2y.invalid && (q2y.dirty || q2y.touched)">Y is required.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form__buttons">
+        <button mat-flat-button type="submit" [disabled]="intersectionForm.invalid">Sprawdź</button>
+        <button mat-stroked-button [disabled]="!intersectionForm.touched" (click)="restPoints($event)"> reset</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="result frame">
+    <h3>Wynik:</h3>
+    <div *ngIf="result">
+      <p>{{ result }}</p>
+    </div>
+    <div id="jxgbox" style="width: 500px; height: 500px;"></div>
+  </div>
+</main>
